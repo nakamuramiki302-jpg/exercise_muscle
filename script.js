@@ -320,27 +320,30 @@ function showFinalResults() {
     document.getElementById('quiz-container').innerHTML = `
         <div style="text-align: center; padding: 40px;">
             <div style="font-size: 5em; margin-bottom: 20px;">${emoji}</div>
-            <h2 style="font-size: 2em; color: #1e293b; margin-bottom: 16px;">クイズ終了！</h2>
+            <h2 style="font-size: 2em; color: #1e293b; margin-bottom: 16px;">🎊 クイズ終了！</h2>
             <p style="font-size: 1.3em; color: #64748b; margin-bottom: 30px;">${message}</p>
-            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 30px; border-radius: 16px; margin-bottom: 30px; border: 3px solid #fbbf24;">
-                <div style="font-size: 3em; font-weight: 700; color: #f59e0b; margin-bottom: 10px;">
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 30px; border-radius: 16px; margin-bottom: 30px; border: 3px solid #10b981;">
+                <div style="font-size: 3em; font-weight: 700; color: #10b981; margin-bottom: 10px;">
                     ${correctCount} / ${MAX_QUESTIONS}
                 </div>
-                <div style="font-size: 1.2em; color: #92400e;">
+                <div style="font-size: 1.2em; color: #065f46;">
                     正答率: ${percentage}%
                 </div>
             </div>
-            <div style="display: flex; gap: 16px; justify-content: center;">
-                <button onclick="backToHome()" style="padding: 18px 40px; font-size: 1.2em; background: white; color: #92400e; border: 2px solid #fbbf24; border-radius: 12px; cursor: pointer; font-weight: 600;">
-                    🏠 ホームに戻る
-                </button>
-                <button onclick="startQuiz(selectedSport)" style="padding: 18px 40px; font-size: 1.2em; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);">
-                    🔄 もう一度挑戦
-                </button>
-            </div>
         </div>
     `;
+    
+    // DOMが更新された後にイベントリスナーを追加
+    setTimeout(() => {
+        const restartBtn = document.getElementById('restart-btn');
+        if (restartBtn) {
+            restartBtn.addEventListener('click', function() {
+                location.reload();
+            });
+        }
+    }, 0);
 }
+
 
 // 次の問題ボタンのイベント
 nextBtn.onclick = generateQuestion;
